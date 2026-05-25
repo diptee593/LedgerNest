@@ -1,8 +1,7 @@
 package com.ledgernest.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class ApiResponse<T> {
-s
+
     private boolean success;
     private String message;
     private T data;
@@ -36,7 +35,7 @@ s
                 .build();
     }
 
-    //  Success message only
+    // Success message only
     public static <T> ApiResponse<T> success(String message) {
         return ApiResponse.<T>builder()
                 .success(true)
@@ -45,7 +44,7 @@ s
                 .build();
     }
 
-    //  Error with message
+    // Error with message
     public static <T> ApiResponse<T> error(String message) {
         return ApiResponse.<T>builder()
                 .success(false)
