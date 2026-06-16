@@ -3,7 +3,7 @@ package com.ledgernest.user;
 import com.ledgernest.tenant.Tenant;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hivernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -45,10 +45,12 @@ public class User{
 
     // @Enumerated(STRING) = stores "OWNER" not 0 in the DB
     // Matches your DB CHECK constraint: ('OWNER','ADMIN','ACCOUNTANT','VIEWER')
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Role role = Role.OWNER;
 
+    @Builder.Default
     @Column(name = "is_active", nullable = false)
     private boolean isActive = true;
 
@@ -64,5 +66,4 @@ public class User{
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-}
 }
